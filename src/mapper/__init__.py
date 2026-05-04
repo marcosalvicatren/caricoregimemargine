@@ -94,12 +94,6 @@ def mappa_righe(
             ],
             sezione_conto=[
                 SezioneContoDettaglio(
-                    conto=CONTO_FORNITORE,
-                    imponibile_conto=-importo,  # Avere → negativo
-                    is_ritenuta_acconto=False,
-                    descrizione=riga.fornitore or descrizione,
-                ),
-                SezioneContoDettaglio(
                     conto="45041",
                     imponibile_conto=0.0,
                     is_ritenuta_acconto=False,
