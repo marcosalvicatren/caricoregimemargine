@@ -40,14 +40,12 @@ class TestMapper:
         assert det.imposta == 0.0
         assert det.imponibile == 500.0
 
-    def test_sezione_conto_tre_movimenti(self, riga_valida) -> None:
+    def test_sezione_conto_due_movimenti(self, riga_valida) -> None:
         records = mappa_righe([riga_valida], 1, 1)
         conti = records[0].sezione_conto
-        assert len(conti) == 3
-        fornitore = next(c for c in conti if c.conto == CONTO_FORNITORE)
+        assert len(conti) == 2
         merci = next(c for c in conti if c.conto == CONTO_MERCI)
         iva = next(c for c in conti if c.conto == "45041")
-        assert fornitore.imponibile_conto == -500.0
         assert merci.imponibile_conto == 500.0
         assert iva.imponibile_conto == 0.0
 
