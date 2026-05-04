@@ -95,7 +95,7 @@ def genera_xml(records: list[PrimaNotaRecord]) -> str:
         # Dati generici
         dg = ET.SubElement(pn_iva, "PrimaNotaDatiGenerici")
         _sub(dg, "TipologiaDocumentoIva", rec.tipologia_documento_iva)
-        _sub(dg, "CodiceFornitore", rec.codice_cliente)
+        _sub(dg, "CodiceCliente", rec.codice_cliente)
         _sub(dg, "CausaleContabile", rec.causale_contabile)
         _sub(dg, "NumeroDocumento", rec.numero_documento)
         _sub(dg, "DataDocumento", _fmt_date(rec.data_documento))
