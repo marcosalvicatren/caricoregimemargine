@@ -77,16 +77,16 @@ class TestGeneraXml:
         protocolli = [int(el.text) for el in root.findall(".//ProtocolloIva")]
         assert protocolli == [7, 8, 9]
 
-    def test_xml_sezione_conto_tre_movimenti(self, riga_valida) -> None:
+    def test_xml_sezione_conto_due_movimenti(self, riga_valida) -> None:
         records = mappa_righe([riga_valida], 1, 1)
         xml_str = genera_xml(records)
         root = ET.fromstring(xml_str)
         conti = root.findall(".//SezioneContoDettaglio")
-        assert len(conti) == 3
+        assert len(conti) == 2
         codici = [c.find("Conto").text for c in conti]
-        assert "41003" in codici
         assert "60101" in codici
         assert "45041" in codici
+        assert "41003" not in codici
 
     def test_xml_lista_vuota_solleva_errore(self) -> None:
         with pytest.raises(ValueError, match="Nessun record"):
